@@ -16,7 +16,8 @@ const PORT = 3000 && process.env.PORT
 
 
 app.use(cors({
-    credentials: true
+    credentials: true,
+    origin: ["http://localhost:1420"]
 }))
 
 

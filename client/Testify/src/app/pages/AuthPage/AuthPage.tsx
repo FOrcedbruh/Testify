@@ -1,6 +1,8 @@
 import { FC, useState } from "react";
 import styles from './AuthPage.module.scss'
 import { Reg } from "./Forms/Reg";
+import { Log } from "./Forms/Log";
+import { AnimatePresence } from "framer-motion";
 
 const AuthPage: FC = () => {
 
@@ -8,7 +10,9 @@ const AuthPage: FC = () => {
 
     return (
         <section className={styles.window}>
-            {!form ? <Reg /> : <></>}
+            <AnimatePresence>
+                {!form ? <Reg setForm={setForm} /> : <Log setForm={setForm}/>}
+            </AnimatePresence>
         </section>
     )
 }

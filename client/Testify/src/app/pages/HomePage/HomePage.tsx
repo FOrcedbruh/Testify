@@ -11,14 +11,16 @@ const HomePage: React.FC = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        if (!authUser) {
+        if (authUser === null) {
             navigate("/auth")
+        } else {
+            return
         }
-    }, [])
+    }, [authUser])
 
     return (
         <section className={styles.window}>
-            Home
+            <h1>{authUser.login}, вы можете пройти тест</h1>
         </section>
     )
 }
