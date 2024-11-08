@@ -1,13 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Gothic+A1&family=Inconsolata:wght@200..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Quicksand:wght@300..700&family=Rethink+Sans:ital,wght@0,400..800;1,400..800&display=swap');
+
 * {
     box-sizing: border-box;
 }
 
+.titlebar {
+    background-color: #000000;
+}
 
 body {
     padding: 0;
     margin: 0;
     width: 100vw;
     height: 100vh;
+    font-family: "Montserrat", sans-serif;
 }
 
 main.main {
@@ -16,5 +22,6 @@ main.main {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #000;
+    flex-direction: column;
+    background-color: #000000;
 }
