@@ -19,7 +19,8 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.53.1",
     "react-router-dom": "^6.28.0",
-    "scss": "^0.2.4"
+    "scss": "^0.2.4",
+    "zustand": "^5.0.1"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2",

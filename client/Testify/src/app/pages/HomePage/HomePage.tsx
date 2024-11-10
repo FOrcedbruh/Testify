@@ -3,7 +3,7 @@ import { useAuthContext } from '../../context/authContext';
 import { Dispatch, SetStateAction, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import gerbIcon from './../../../../public/icons/gerbIcon.png'
+import gerbIcon from './../../../icons/gerbIcon.png'
 
 interface IHomeProps {
     setReadyToTest: Dispatch<SetStateAction<boolean>>,

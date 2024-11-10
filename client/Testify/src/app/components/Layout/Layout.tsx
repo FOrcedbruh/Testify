@@ -1,9 +1,10 @@
 import { FC } from "react";
 import styles from './Layout.module.scss'
 import { Outlet, Link } from "react-router-dom";
-import gerbIcon from './../../../../public/icons/gerbIcon.png'
+import gerbIcon from './../../../icons/gerbIcon.png'
 import { motion } from "framer-motion";
 import { useAuthContext } from "../../context/authContext";
+import { logout } from "../../../api/auth/AuthHandlers";
 
 interface ILayoutProps {
     readyToTest: boolean
@@ -13,7 +14,14 @@ interface ILayoutProps {
 const Layout: FC<ILayoutProps> = ({ readyToTest }) => {
 
 
-    const { authUser } = useAuthContext()
+    const { authUser, setAuthUser } = useAuthContext()
+
+    const logoutHandler = async () => {
+        await logout();
+        localStorage.clear()
+        //@ts-ignore
+        setAuthUser(null)
+    }
 
     return (
         <>
@@ -24,6 +32,7 @@ const Layout: FC<ILayoutProps> = ({ readyToTest }) => {
                 <nav>
                     {authUser !== null && <Link to={"/"}>Главная</Link>}
                     {authUser === null && <Link to={"/auth"}>Авторизация</Link>}
+                    {authUser !== null && <Link to={"/auth"} onClick={logoutHandler}>Выйти</Link>}
                 </nav>
             </header>
             <div className={styles.container}>

@@ -36,7 +36,7 @@ class authController {
     
             if (candidate) {
                 return res.status(400).json({
-                    message: `User with login ${login} already exists`
+                    message: `Пользователь ${login} уже существует`
                 })
             }
     
@@ -71,7 +71,7 @@ class authController {
 
             if (!user) {
                 return res.status(400).json({
-                    message: `User with login ${login} doesn't exist`
+                    message: `Пользователь ${login} не существует`
                 })
             }
 
@@ -79,7 +79,7 @@ class authController {
 
             if (!validPassword) {
                 return res.status(400).json({
-                    message: `Password incorrect`
+                    message: `Введены неверные данные`
                 })
             }
 

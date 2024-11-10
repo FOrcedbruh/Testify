@@ -7,8 +7,8 @@ export const registration = async (login: string, password: string): Promise<any
         })
 
         return res.data
-    } catch (error) {
-        console.log(error)
+    } catch (error: any) {
+        return error.response.data.message
     }
 }
 
@@ -20,7 +20,13 @@ export const login = async (login: string, password: string): Promise<any> => {
         })
 
         return res.data
-    } catch (error) {
-        console.log(error)
+    } catch (error: any) {
+        return error.response.data.message
     }
+}
+
+export const logout = async () => {
+    const res = await instance.post("auth/logout")
+
+    return res.data
 }

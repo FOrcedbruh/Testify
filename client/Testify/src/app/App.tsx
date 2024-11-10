@@ -5,6 +5,11 @@ import AuthPage from "./pages/AuthPage/AuthPage";
 import Layout from "./components/Layout/Layout";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import TestPage from "./pages/TestPage/TestPage";
+import { useNotification } from "./zustand/useNotification";
+import { Notification } from "./components/Notification/Notification";
+import { AnimatePresence } from "framer-motion";
+
+
 
 const App: FC = () => {
 
@@ -12,8 +17,13 @@ const App: FC = () => {
 
   const [readyToTest, setReadyToTest] = useState<boolean>(false)
 
+  const { notification } = useNotification()
+
   return (
     <main className="main">
+      <AnimatePresence>
+        {notification?.text && <Notification status={notification.status}/>}
+      </AnimatePresence>
       <QueryClientProvider client={queryClient}>
         <Routes>
           <Route element={<Layout readyToTest={readyToTest}/>}>

@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 import { registration } from "../../../../api/auth/AuthHandlers";
 import { useAuthContext } from "../../../context/authContext";
+import { useNotification } from "../../../zustand/useNotification";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -20,6 +22,8 @@ interface IRegProps {
 export const Reg: FC<IRegProps> = ({ setForm }) => {
 
     const { setAuthUser } = useAuthContext()
+    const navigate = useNavigate()
+    const { setNotification } = useNotification()
 
 
     const {
@@ -34,10 +38,22 @@ export const Reg: FC<IRegProps> = ({ setForm }) => {
 
     const onSubmit = async (data: IFormState) => {
         const res = await registration(data.login, data.password)
-        localStorage.setItem("auser", JSON.stringify(res))
-        //@ts-ignore
-        setAuthUser(res)
-        reset()
+        if (res._id) {
+            localStorage.setItem("auser", JSON.stringify(res))
+            //@ts-ignore
+            setAuthUser(res)
+            navigate("/")
+            setNotification({
+                status: "success",
+                text: "Успешный вход"
+            })
+            reset()
+        } else {
+            setNotification({
+                status: "error",
+                text: res
+            })
+        }
     }
 
     return (

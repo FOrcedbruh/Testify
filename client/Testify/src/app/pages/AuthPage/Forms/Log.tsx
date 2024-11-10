@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { login } from "../../../../api/auth/AuthHandlers";
 import { useAuthContext } from "../../../context/authContext";
 import { useNavigate } from "react-router-dom";
-
+import { useNotification } from "../../../zustand/useNotification";
 
 
 
@@ -23,6 +23,7 @@ export const Log: FC<ILogProps> = ({ setForm }) => {
 
     const { setAuthUser } = useAuthContext()
     const navigate = useNavigate()
+    const { setNotification } = useNotification()
 
     const {
         register,
@@ -36,11 +37,22 @@ export const Log: FC<ILogProps> = ({ setForm }) => {
 
     const onSubmit = async (data: IFormState) => {
         const res = await login(data.login, data.password)
-        localStorage.setItem("auser", JSON.stringify(res))
-        //@ts-ignore
-        setAuthUser(res)
-        navigate("/")
-        reset()
+        if (res._id) {
+            localStorage.setItem("auser", JSON.stringify(res))
+            //@ts-ignore
+            setAuthUser(res)
+            navigate("/")
+            reset()
+            setNotification({
+                status: "success",
+                text: "Успешный вход"
+            })
+        } else {
+            setNotification({
+                status: "error",
+                text: res
+            })
+        }
     }
 
     return (
