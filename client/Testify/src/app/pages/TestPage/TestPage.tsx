@@ -5,11 +5,15 @@ import { getTests } from "../../../api/tests/handlers";
 import { ITest } from "../../../types/ITest";
 import { TestItem } from "../../components/TestItem/TestItem";
 import { AnimatePresence, motion } from "framer-motion";
+import { setResultServer } from "../../../api/tests/handlers";
+import { useAuthContext } from "../../context/authContext";
 
 const TestPage: FC = () => {
 
     const [step, setStep] = useState<number>(0)
     const [result, setResult] = useState<number>(0)
+
+    const { authUser, setAuthUser } = useAuthContext()
 
     const queryClient = useQueryClient()
 
@@ -24,6 +28,15 @@ const TestPage: FC = () => {
     }
 
     if (step === data?.length) {
+
+        const setResultHander = async () => {
+            const res = await setResultServer(authUser._id, result)
+
+            localStorage.setItem('auser', JSON.stringify(res))
+            //@ts-ignore
+            setAuthUser(res)
+        }
+        setResultHander()
         return (
             <div className={styles.result}>
                 <h1>Ваш результат</h1>

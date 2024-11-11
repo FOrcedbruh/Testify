@@ -54,7 +54,8 @@ class authController {
     
             return res.status(200).json({
                 _id: user._id,
-                login: login
+                login: login,
+                result: user.result
             });
         } catch (error) {   
             console.log(error);
@@ -87,7 +88,8 @@ class authController {
 
             return res.status(200).json({
                 _id: user._id,
-                login: login
+                login: login,
+                result: user.result
             })
         } catch (error) {
             console.log(error);

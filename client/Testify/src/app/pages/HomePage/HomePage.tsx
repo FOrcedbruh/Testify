@@ -29,6 +29,14 @@ const HomePage: React.FC<IHomeProps> = ({ setReadyToTest }) => {
         navigate("/test")
     }
 
+    if (authUser.result > 0) {
+        return (
+            <motion.div initial={{opacity: 0, y: 30}} animate={{opacity: 1, y: 0}} transition={{duration: 0.5}} className={styles.result}>
+                Тест пройден, ваш результат: {authUser.result}
+            </motion.div>
+        )
+    }
+
     return (
         <section className={styles.window}>
             <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1, delay: 0.7}} className={styles.logo}>
