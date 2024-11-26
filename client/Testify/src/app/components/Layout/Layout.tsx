@@ -38,6 +38,10 @@ const Layout: FC<ILayoutProps> = ({ readyToTest }) => {
             <div className={styles.container}>
                 <Outlet />
             </div>
+            <footer className={styles.footer}>
+                <img src={gerbIcon} alt="" />
+                <p>2024</p>
+            </footer>
         </>
     )
 }

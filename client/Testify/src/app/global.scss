@@ -9,14 +9,16 @@ body {
     padding: 0;
     margin: 0;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
+    height: fit-content;
     font-family: "Montserrat", sans-serif;
-    background-color: #000000;
+    background-color: #1e1e1e;
 }
 
 main.main {
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
+    height: fit-content;
     display: flex;
     justify-content: center;
     align-items: center;

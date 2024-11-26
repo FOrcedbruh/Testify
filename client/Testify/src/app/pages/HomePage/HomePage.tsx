@@ -29,13 +29,16 @@ const HomePage: React.FC<IHomeProps> = ({ setReadyToTest }) => {
         navigate("/test")
     }
 
-    if (authUser.result > 0) {
+
+    if (authUser !== null && authUser.result > 0) {
         return (
             <motion.div initial={{opacity: 0, y: 30}} animate={{opacity: 1, y: 0}} transition={{duration: 0.5}} className={styles.result}>
-                Тест пройден, ваш результат: {authUser.result}
+                Тест пройден, ваш результат: {authUser.result && authUser.result}
+                <button className={styles.btn} onClick={() => navigate("/test")}>Пройти заново</button>
             </motion.div>
         )
     }
+
 
     return (
         <section className={styles.window}>

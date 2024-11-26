@@ -52,6 +52,7 @@ export const TestItem: FC<ITestItemProps> = ({ allSteps, correctAnswer, question
                 {answers.map((answer, index) => {
                     return (
                         <motion.li 
+                            key={index}
                             variants={variants}
                             custom={index}
                             initial={"initial"}

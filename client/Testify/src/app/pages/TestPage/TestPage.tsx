@@ -15,6 +15,7 @@ const TestPage: FC = () => {
 
     const { authUser, setAuthUser } = useAuthContext()
 
+    //@ts-ignore
     const queryClient = useQueryClient()
 
     const { data, isLoading } = useQuery<ITest[]>({queryKey: ["tests"], queryFn: getTests})
